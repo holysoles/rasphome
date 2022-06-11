@@ -2,12 +2,12 @@ var Gpio = require('onoff').Gpio;
 var relay = new Gpio(21, 'out');
 
 module.exports = {
-    default: function (payload) {
+    default: function (body) {
         var response = {};
-        if(payload.action){
+        if(!body.action){
             throw 'no action was provided';
         } else {
-            switch (payload.action) {
+            switch (body.action) {
                 case 'on':
                     console.log('received power on command for samsung tv');
                     relay.writeSync(1);

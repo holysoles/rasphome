@@ -1,7 +1,7 @@
 var _samsungTv = require('./devices/samsungTv.js');
 
 module.exports = {
-    samsungTv: function(payload){
-        _samsungTv.default(payload);
+    samsungTv: function(body){
+        _samsungTv.default(body);
     }
 }
