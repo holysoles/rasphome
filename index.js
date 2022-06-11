@@ -44,8 +44,7 @@ app.post('/home/device', async function (req, res, next){
   if (req.body.device == 'samsung_tv'){
     try {
       var resBody = devices.samsungTv(req.body);
-      res.json(resBody);
-      res.sendStatus(200);
+      res.status(200).json(resBody);
       return
     } catch(err) {
       console.log(err);
