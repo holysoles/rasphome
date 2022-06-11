@@ -23,6 +23,7 @@ app.post('/plex', upload.single('thumb'), function (req, res, next) {
 //call func to process
   process.func(payload);
   res.sendStatus(200);
+  return
 });
 
 app.post('/proxy', async function (req, res, next) {
@@ -35,6 +36,7 @@ app.post('/proxy', async function (req, res, next) {
   });
   //send response
   res.sendStatus(200);
+  return
 });
 
 app.post('/home/device', async function (req, res, next){
@@ -44,13 +46,16 @@ app.post('/home/device', async function (req, res, next){
       var resBody = devices.samsungTv(req.body);
       res.json(resBody);
       res.sendStatus(200);
+      return
     } catch(err) {
       console.log(err);
       res.sendStatus(500);
+      return
     }
   }
   else {
     res.sendStatus(400);
+    return
   }
 
   //send response?
