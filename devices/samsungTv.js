@@ -22,7 +22,9 @@ module.exports = {
                     break;
                 case 'check_state':
                     console.log('checking state of samsung tv');
-                    response.state = relay.readSync();
+                    var intState = relay.readSync();
+                    if(intState == 1){ response.state = 'on' }
+                    else{ response.state = 'off' }
                     response.code = 200;
                     response.message = 'successfully checked state.'
                     break;
