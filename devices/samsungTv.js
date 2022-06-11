@@ -6,15 +6,17 @@ module.exports = {
         switch (payload.action) {
             case 'on':
                 console.log('received power on command for samsung tv');
-                //relay.writeSync(1);
+                relay.writeSync(1);
                 break;
             case 'off':
                 console.log('received power off command for samsung tv');
-                //relay.writeSync(2);
+                relay.writeSync(0);
                 break;
             case 'check_state':
                 console.log('checking state of samsung tv');
-                //check GPIO pin state
+                var state = relay.readSync();
+                var response = {state: String(state)}
+                return response;
                 break;
         }
     }

@@ -38,10 +38,18 @@ app.post('/proxy', async function (req, res, next) {
 });
 
 app.post('/home/device', async function (req, res, next){
-  var payload = JSON.parse(JSON.stringify(req.body));
-  console.log(payload);
-  if (payload.device == 'samsung_tv'){
-    devices.samsungTv(payload);
+  console.log(req.body);
+  if (req.body.device == 'samsung_tv'){
+    try {
+      var resBody = devices.samsungTv(req.body);
+      res.json(resBody);
+      res.sendStatus(200);
+    } catch {
+      res.sendStatus(500);
+    }
+  }
+  else {
+    res.sendStatus(400);
   }
 
   //send response?
