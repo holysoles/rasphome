@@ -44,7 +44,8 @@ app.post('/home/device', async function (req, res, next){
       var resBody = devices.samsungTv(req.body);
       res.json(resBody);
       res.sendStatus(200);
-    } catch {
+    } catch(err) {
+      console.log(err);
       res.sendStatus(500);
     }
   }
