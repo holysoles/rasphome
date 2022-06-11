@@ -7,7 +7,7 @@ var express = require('express'),
 var process = require('./processPayload.js');
 var proxy = require('./proxy.js');
 var home = require('./home.js');
-var devices = require('./devices/samsungTv.js');
+var devices = require('./devices.js');
 
 var app = express();
 app.use(express.json());
