@@ -7,7 +7,6 @@ var express = require('express'),
 var process = require('./processPayload.js');
 var proxy = require('./proxy.js');
 var home = require('./home.js');
-var devices = require('./devices/samsungTv.js');
 
 var app = express();
 app.use(express.json());
@@ -37,14 +36,19 @@ app.post('/proxy', async function (req, res, next) {
   res.sendStatus(200);
 });
 
-app.post('/home/device', async function (req, res, next){
+app.post('/home', async function (req, res, next){
   var payload = JSON.parse(JSON.stringify(req.body));
   console.log(payload);
-  if (payload.device == 'samsung_tv'){
-    devices.samsungTv(payload);
+  var action = payload.action;
+  //call func to process
+  if(action == 'wol'){
+    home.WakeOnLan(payload.host);
+    res.sendStatus(200);  
   }
-
-  //send response?
+  else{
+    res.sendStatus(404);
+  }
+  //send response
 });
 
 app.listen(8080);
