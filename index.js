@@ -40,7 +40,7 @@ app.post('/proxy', async function (req, res, next) {
 });
 
 app.post('/home/device', async function (req, res, next){
-  console.log(req.body);
+  console.log('request body: ' + req.body);
   if (req.body.device == 'samsung_tv'){
     try {
       var response = devices.samsungTv(req.body);
